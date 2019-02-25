@@ -1,0 +1,26 @@
+<div class="container">  
+  <div class="row">
+    <mat-form-field class="example-form-field">
+      <input matInput type="text" placeholder="Search" [(ngModel)]="searchTerm">
+      <button mat-button *ngIf="searchTerm" matSuffix mat-icon-button aria-label="Clear" (click)="searchTerm = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>  
+  </div>
+  <div class="row">
+      <button [disabled]="!searchTerm" style="width:300px" mat-stroked-button type="submit" color="primary" (click)="search()">Search</button>
+  </div>
+  <div class="row">
+      <button style="width:300px" mat-stroked-button type="submit" color="primary" (click)="stopPlaying()">Stop Playing</button>
+  </div>
+  <div class="row" *ngIf="videos">
+    <mat-form-field>
+      <mat-select placeholder="Search results" (selectionChange)="selectVideo($event.value)">
+        <mat-option *ngFor="let video of videos" [value]="video.id.videoId">
+          {{video.snippet.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>  
+</div>
+
